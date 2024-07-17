@@ -9,6 +9,7 @@ export default async function DetailsPage({
 }: {
   params: { slug: string | string[] };
 }) {
+  /* TODO: Create this logic as an external function or re-factor to be tested properly */
   let data: ProductBody[] | ProductBody | undefined;
   let title = "";
   let categoryName = "";
