@@ -17,16 +17,16 @@ export default function Navigation() {
   const isHomePage = pathname === Route.HOME;
 
   return (
-    <nav className="sticky top-0 pt-2 z-50 bg-white mb-10">
+    <nav className="sticky top-0 pt-2 z-50 bg-white mb-10 hover:cursor-pointer">
       <div className="w-full flex justify-between border-1 border-yellow-500 rounded-lg p-4">
         <Link href={Route.HOME}>
           <HomeIcon size={24} />
         </Link>
         <div className="flex gap-4 justify-center align-center">
-          <Link href={Route.FAVORITES}>
+          <Link href={Route.FAVORITES} className="hover:cursor-not-allowed">
             <FavoriteIcon size={24} />
           </Link>
-          <Link href={Route.CART}>
+          <Link href={Route.CART} className="hover:cursor-not-allowed">
             <CartIcon size={24} />
           </Link>
         </div>

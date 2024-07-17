@@ -1,10 +1,8 @@
-import { Suspense } from "react";
-
-import { CategoriesList, DetailsSkeleton, ProductPage } from "@/components";
+import { CategoriesList, ProductPage } from "@/components";
 import { ProductBody } from "@/lib/api.types";
 import { getInCategories, getProduct } from "@/lib/api.utils";
 import { Error as ErrorLabel } from "@/lib/constants";
-import { decodeURLString, extractProductDetailsFromURL, removeSlashes } from "@/lib/helpers";
+import { decodeURLString, extractProductDetailsFromURL } from "@/lib/helpers";
 
 export default async function DetailsPage({
   params,

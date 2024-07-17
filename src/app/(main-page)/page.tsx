@@ -11,8 +11,8 @@ export default async function Home() {
   return (
     <main>
       <section className="flex flex-col gap-6 ">
-        <h1 className="text-3xl font-extrabold">{TITLE}</h1>
-        <h2 className="text-md text-slate-500">{SUBTITLE}</h2>
+        <h1 className="text-3xl font-extrabold md:text-4xl">{TITLE}</h1>
+        <h2 className="text-md text-slate-500 md:text-lg">{SUBTITLE}</h2>
       </section>
       <Divider />
       <section className="flex flex-col gap-6">

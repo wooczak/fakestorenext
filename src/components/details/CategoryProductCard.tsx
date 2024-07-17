@@ -28,6 +28,7 @@ export default async function CategoryProductCard({
       <Image
         src={image}
         alt={title}
+        className="sm:basis-1/3"
         height={100}
         width={100}
         blurDataURL={blurDataURL}
@@ -36,7 +37,7 @@ export default async function CategoryProductCard({
           objectFit: "scale-down",
         }}
       />
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between sm:basis-2/3">
         <div className="flex flex-col gap-3">
           <p className="font-medium line-clamp-2 ">{title}</p>
           <div className="flex items-end">
