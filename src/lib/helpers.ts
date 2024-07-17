@@ -22,14 +22,17 @@ export function extractProductDetailsFromURL(input: string): {
   name: string;
   id: number;
 } {
-  console.log(input, input.split("_"));
-
   return {
     name: input.split("_")[0],
     id: parseInt(input.split("_")[1], 10),
   };
 }
 
+/**
+ * 
+ * @param slug Any URI-related string that might contain slashes that would disturb the Next.js params.slug logic afterwards.
+ * @returns A string without slashes.
+ */
 export function removeSlashes(slug: string): string {
   return slug.replace(/\//g, "");
 }
