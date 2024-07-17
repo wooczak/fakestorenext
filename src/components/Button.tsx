@@ -1,12 +1,25 @@
-import { ReactNode } from "react";
-import { ButtonVariant } from "./types";
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react";
 
-export default function Button({ children, variant }: { children: ReactNode, variant: ButtonVariant }) {
-    const generalClassName = 'px-6 py-2 rounded-md w-full'
-    const CTAClassName = 'bg-slate-600 text-white font-bold'
-    return (
-        <button className={`${generalClassName} ${variant === ButtonVariant.CTA ? CTAClassName : ''}`}>
-            {children}
-        </button>
-    )
+type ButtonProps = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> & {
+  children: ReactNode | ReactNode[];
+  variant: "cta" | "link";
+};
+
+export default function Button({ children, variant, ...props }: ButtonProps) {
+  const generalClassName = "px-6 py-2 rounded-md uppercase font-medium";
+  const CTAClassName = "bg-yellow-500 text-black shadow shadow-yellow-600 hover:bg-yellow-400 transition-all hover:-translate-y-1";
+  const LinkClassName = "italic underline !px-0 !py-0 tracking-wider";
+  return (
+    <button
+      {...props}
+      className={`${generalClassName} ${
+        variant === "cta" ? CTAClassName : LinkClassName
+      } ${props.className} `}
+    >
+      {children}
+    </button>
+  );
 }

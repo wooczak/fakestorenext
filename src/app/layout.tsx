@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} p-4`}>
+      <body className={`${inter.className} p-4 sm:p-6 md:px-8 lg:px-10 relative h-screen max-w-screen-2xl mx-auto` }>
         <Navigation />
         {children}
       </body>
