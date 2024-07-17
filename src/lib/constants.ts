@@ -41,7 +41,8 @@ export const Content = {
     ADD_TO_CART: "Add to cart",
   },
   ProductPage: {
-    CATEGORY_LABEL: "Category"
+    CATEGORY_LABEL: "Category",
+    PRICE: "Price"
   },
   Error: {
     GO_TO_HOMEPAGE: "Go back to homepage",
