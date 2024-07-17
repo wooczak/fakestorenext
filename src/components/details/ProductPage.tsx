@@ -1,17 +1,21 @@
 import Image from "next/image";
 import Button from "../Button";
 import ExpandableDescription from "./client/ExpandableDescription";
-import { Content } from "@/lib/constants";
+import { Content, Route } from "@/lib/constants";
 import { ProductBody } from "@/lib/api.types";
+import Link from "next/link";
+import { decodeURLString } from "@/lib/helpers";
 
 export default function ProductPage({
   data,
   title,
   blurDataURL,
+  categoryName,
 }: {
   data: ProductBody;
   title: string;
   blurDataURL: string;
+  categoryName: string;
 }) {
   return (
     <div className="md:flex gap-6 md:max-h-96 sm:basis-full sm:py-4">
@@ -27,12 +31,18 @@ export default function ProductPage({
           }}
         />
       </div>
-      <div className="md:basis-1/2 md:flex md:flex-col md:justify-start">
-        <div>
-          <h1 className="w-fit my-6 relative text-3xl font-semibold">
+      <div className="md:basis-1/2 flex flex-col gap-6 justify-start">
+        <div className="flex flex-col gap-3">
+          <h1 className="w-fit relative text-3xl font-semibold">
             {data?.title}
           </h1>
-          <Button className="w-full mb-6" variant="cta">
+          <h2>
+            {Content.ProductPage.CATEGORY_LABEL}:{" "}
+            <Link href={`${Route.DETAILS}/${categoryName.toLowerCase()}`}>
+              <Button variant="link">{decodeURLString(categoryName)}</Button>
+            </Link>
+          </h2>
+          <Button className="w-full" variant="cta">
             {Content.CategoryProductCard.ADD_TO_CART}
           </Button>
         </div>

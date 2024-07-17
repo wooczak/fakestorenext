@@ -38,7 +38,10 @@ export const Content = {
       SEE_MORE: "Expand description",
       HIDE: "Shrink description"
     },
-    ADD_TO_CART: "Add to cart"
+    ADD_TO_CART: "Add to cart",
+  },
+  ProductPage: {
+    CATEGORY_LABEL: "Category"
   },
   Error: {
     GO_TO_HOMEPAGE: "Go back to homepage",

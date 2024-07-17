@@ -2,7 +2,7 @@ import { CategoriesList, ProductPage } from "@/components";
 import { ProductBody } from "@/lib/api.types";
 import { getInCategories, getProduct } from "@/lib/api.utils";
 import { Error as ErrorLabel } from "@/lib/constants";
-import { decodeURLString, extractProductDetailsFromURL } from "@/lib/helpers";
+import { decodeURLString, extractProductDetailsFromURL, firstCharUpperCase } from "@/lib/helpers";
 
 export default async function DetailsPage({
   params,
@@ -11,6 +11,7 @@ export default async function DetailsPage({
 }) {
   /* TODO: Create this logic as an external function or re-factor to be tested properly */
   let data: ProductBody[] | ProductBody | undefined;
+  let totalCount: number | null = null;
   let title = "";
   let categoryName = "";
   let blurDataURL = "";
@@ -23,6 +24,7 @@ export default async function DetailsPage({
       categoryName = params.slug[0];
       title = decodeURLString(categoryName);
       data = await getInCategories(categoryName);
+      totalCount = data?.length;
     } else if (isProductsPage) {
       const { name, id } = extractProductDetailsFromURL(params.slug[1]);
 
@@ -32,6 +34,8 @@ export default async function DetailsPage({
       title = productData?.title;
       data = productData;
       blurDataURL = productBlurDataURL;
+      totalCount = null;
+      categoryName = firstCharUpperCase(params.slug[0]);
     }
   } catch (error) {
     console.error(error);
@@ -41,11 +45,21 @@ export default async function DetailsPage({
   return (
     <section className="flex flex-col gap-4 relative sm:flex-row sm:flex-wrap">
       {Array.isArray(data) ? (
-        <CategoriesList data={data} categoryName={categoryName} title={title} />
+        <CategoriesList
+          data={data}
+          categoryName={categoryName}
+          title={title}
+          totalCount={totalCount}
+        />
       ) : (
         !Array.isArray(data) &&
         data && (
-          <ProductPage data={data} title={title} blurDataURL={blurDataURL} />
+          <ProductPage
+            data={data}
+            title={title}
+            blurDataURL={blurDataURL}
+            categoryName={categoryName}
+          />
         )
       )}
     </section>
